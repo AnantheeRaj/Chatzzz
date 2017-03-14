@@ -1,0 +1,29 @@
+<div class="container" ng-controller="BlogController as ctrl">
+
+		<p>
+	
+<div class="form-group has-feedback"></div>
+
+  Search
+
+  <p><input type="text" ng-model="search_text"></p>
+
+
+	<div ng-repeat="blog in ctrl.blogs| filter: search_text">
+
+		<fieldset>
+			<legend></legend>
+			
+			<p>Title: {{blog.title}}  
+
+			<p>ID: {{blog.id}} &nbsp; &nbsp;&nbsp; Name: {{blog.userid}}
+			    &nbsp; &nbsp;&nbsp;  
+			  </p>
+
+			<p>Description: {{blog.description}} 
+			<!-- Role :{{Userdetails.role}}</p> -->		
+		</fieldset>
+	</div>
+
+
+</div>

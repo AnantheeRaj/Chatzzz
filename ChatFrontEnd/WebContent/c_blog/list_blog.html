@@ -1,0 +1,9 @@
+<div class="cantainer" ng-controller="BlogController as ctrl">
+
+welcome to my blog page
+
+<div ng-repeat="blog in ctrl.blogs">
+<a href="#" ng-click="ctrl.getSelectedBlog(blog.id)">TITLE :  {{blog.title}} - written by: {{blog.userid}}</a>
+</div>
+
+</div>
