@@ -1,14 +1,19 @@
-app.controller("ChatController", function($scope, ChatService) {
-  $scope.messages = [];
-  $scope.message = "";
-  $scope.max = 140;
 
-  $scope.addMessage = function() {
-    ChatService.send($scope.message);
-    $scope.message = "";
-  };
+app.controller('chatController', function($scope, $rootScope, chatService) {
 
-  ChatService.receive().then(null, null, function(message) {
-    $scope.messages.push(message);
-  });
+	console.log('starting chatController')
+	$scope.messages = [];
+	$scope.message = "";
+	$scope.max = 140;
+
+	$scope.addMessage = function() {
+		console.log('AddMessage method');
+		chatService.send($rootScope.currentUser.lName + " : " + $scope.message);
+		$scope.message = "";
+	};
+
+	chatService.receive().then(null, null, function(message) {
+		console.log('recieve Method')
+		$scope.messages.push(message);
+	});
 });

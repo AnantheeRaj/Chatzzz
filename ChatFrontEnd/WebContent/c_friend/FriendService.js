@@ -1,65 +1,66 @@
-'use strict';
- console.log("start of friend service")
-app.factory('FriendService', ['$http', '$q','$rootScope', function($http, $q,$rootScope){
+
+
+app.factory('friendService', function($http, $rootScope) {
+	console.log('entering friendService')
+
+	var BASE_URL = "http://localhost:8050/HavFunBackEnd"
+
+	var friendService = this;
+
+	friendService.getMyFriends = function() {
+		return $http.get(BASE_URL + "/myfriends").then(function(response) {
+			return response.data
+		},function(errResponse){
+			console.log('Error while getting myfriends')
+		});
+	},
 	
-	console.log("FriendService...")
+	friendService.getNewfriendRequest = function(){
+		return $http.get(BASE_URL + "/getMyFriendRequests/").then(function(response){
+			return response.data;
+		},function(errResponse){
+			console.log('Error while getting friendRequest')
+		});
+	}
+
+	friendService.sendFriendRequest = function(friendId) {
+		return $http.get(BASE_URL + "/sendFriendRequest/" + friendId).then(function(response) {
+			return response.data;
+		}, function(errResponse) {
+			console.log('Error SendFriendRequest: ' + errResponse)
+		});
+
+	},
+
+	friendService.unFriend = function(friendId) {
+		return $http.get(BASE_URL + "/unfriend/" + friendId).then(
+				function(response) {
+					return response.data;
+				}, function(errResponse) {
+					console.log('Error Unfriend: ' + errResponse)
+
+				});
+	};
+
+	friendService.acceptFriend = function(friendId) {
+		return $http.get(BASE_URL + "/acceptfriend/" + friendId).then(
+				function(response) {
+					return response.data;
+				}, function(errResponse) {
+					console.log('Error AcceptFriend: ' + errResponse)
+
+				});
+	};
 	
-	var BASE_URL='http://localhost:8080/CollabBackEnd'
-    return {
-         
-		getMyFriends: function() {
-                    return $http.get(BASE_URL+'/myFriends')
-                            .then(
-                                    function(response){
-                                        return response.data;
-                                    }, 
-                                   null
-                            );
-            },
-             
-            sendFriendRequest: function(friendid){
-                    return $http.get(BASE_URL+'/addfriend/'+friendid)
-                            .then(
-                                    function(response){
-                                        return response.data;
-                                    }, 
-                                    function(errResponse){
-                                        console.error('Error while creating friend');
-                                        return $q.reject(errResponse);
-                                    }
-                            );
-            },
-             
-            updateFriendRequest: function(friend, id){
-                    return $http.put(BASE_URL+'/friend/'+id, friend)
-                            .then(
-                                    function(response){
-                                        return response.data;
-                                    }, 
-                                    function(errResponse){
-                                        console.error('Error while updating friend');
-                                        return $q.reject(errResponse);
-                                    }
-                            );
-            },
-             
-          /*  deleteFriend: function(id){
-                    return $http delete(BASE_URL+'/friend/'+id)
-                            .then(
-                                    function(response){
-                                        return response.data;
-                                    }, 
-                                    function(errResponse){
-                                        console.error('Error while deleting friend');
-                                        return $q.reject(errResponse);
-                                    }
-                            );
-            }
-            
-           */
-         
-    };
- 
-}]);/**
- * 
- */
+	friendService.rejectFriend = function(friendId) {
+		return $http.get(BASE_URL + "/rejectfriend/" + friendId).then(
+				function(response) {
+					return response.data;
+				}, function(errResponse) {
+					console.log('Error: RejectFrined ' + errResponse)
+
+				});
+	};
+
+	return friendService;
+})
