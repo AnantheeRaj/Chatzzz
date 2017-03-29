@@ -63,7 +63,7 @@ public class UserController {
 	public ResponseEntity<User> createUser(@RequestBody User user) {
 		System.out.println("-----Starting the method register");
 
-		if (userService.getById(user.getUserId()) != null) {
+		if (userService.getById(user.getUserId()) != null)  {
 			user.setErrorCode("404");
 			user.setErrorMessage("With this is Id the record is already exist. Please Choose another id");
 

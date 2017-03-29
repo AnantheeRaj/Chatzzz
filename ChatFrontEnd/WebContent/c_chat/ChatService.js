@@ -2,7 +2,7 @@
 app.service('chatService', function($q, $timeout) {
 
 	console.log('starting chatService')
-	var BASE_URL = "http://localhost:8050/HavFunBackEnd";
+	var BASE_URL = "http://localhost:8060/HavFunBackEnd";
 
 	var service = {}, listener = $q.defer(), socket = {
 		client : null,

@@ -1,5 +1,6 @@
 package com.cart.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class User extends BaseDomain {
 	private String fName;
 	private String lName;
 	private String address;
+	@Column(unique = true)
 	private String emailId;
 	private String phoneNo;
 	private String password;

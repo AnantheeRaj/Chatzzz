@@ -1,7 +1,7 @@
 
 app.factory('commentService',function($http){
 	console.log('starting commentService')
-	var BASE_URL = "http://localhost:8050/HavFunBackEnd"
+	var BASE_URL = "http://localhost:8060/HavFunBackEnd"
 		
 	var commentService = this;
 	commentService.fetchAllComments = function(blogId){

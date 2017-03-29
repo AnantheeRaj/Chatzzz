@@ -9,6 +9,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +19,8 @@ import com.cart.model.JobApplication;
 
 @Repository
 public class JobAppDaoImpl implements JobAppDao {
+	
+	public static final Logger log = LoggerFactory.getLogger(JobAppDaoImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -28,7 +32,7 @@ public class JobAppDaoImpl implements JobAppDao {
 			Transaction tx = session.beginTransaction();
 			session.save(jobapp);
 			tx.commit();
-			System.out.println("Applied by: " + jobapp.getAppliedBy());
+			log.debug("Applied by: " + jobapp.getAppliedBy());
 			return true;
 		} catch (HibernateException e) {
 			e.printStackTrace();

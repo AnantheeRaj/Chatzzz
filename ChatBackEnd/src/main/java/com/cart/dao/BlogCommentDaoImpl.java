@@ -9,6 +9,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.metamodel.source.annotations.entity.ConfiguredClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +20,7 @@ import com.cart.model.User;
 @Repository
 public class BlogCommentDaoImpl implements BlogCommentDao {
 
+	public static final Logger log = LoggerFactory.getLogger(BlogCommentDaoImpl.class);
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -51,7 +54,7 @@ public class BlogCommentDaoImpl implements BlogCommentDao {
 
 	@Transactional
 	public BlogComment getById(String blogId) {
-		System.out.println("Starting of the getById method in DaoImpl");
+		log.debug("Starting of the getById method in DaoImpl");
 		Session session = sessionFactory.openSession();
 		BlogComment comment = (BlogComment) session.get(BlogComment.class, blogId);
 		/*

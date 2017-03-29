@@ -39,13 +39,14 @@ public class UserDaoImpl implements UserDao {
 		System.out.println("Starting getAllUsers DaoImpl");
 		String hql = "from User";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		System.out.println("Ending UserDao getAllUser");
+		log.debug("Ending UserDao getAllUser");
+		//System.out.println("Ending UserDao getAllUser");
 		return query.list();
 	}
 
 	@Transactional
 	public User getById(String id) {
-		System.out.println("Starting of the getById method in DaoImpl");
+		log.debug("Starting of the getById method in DaoImpl");
 		Session session = sessionFactory.openSession();
 		User user = (User) session.get(User.class, id);
 		/*
@@ -59,16 +60,16 @@ public class UserDaoImpl implements UserDao {
 
 	@Transactional
 	public User getByemailId(String emailId) {
-		System.out.println("Starting getby emailid method");
+		log.debug("Starting getby emailid method");
 		String hql = "from User where emailId='" + emailId + "'";
-		System.out.println("------getByemailID query : " + hql);
+		log.debug("------getByemailID query : " + hql);
 		Query query = sessionFactory.openSession().createQuery(hql);
 		return (User) query.uniqueResult();
 	}
 
 	@Transactional
 	public boolean saveUser(User user) {
-		System.out.println("starting save method in daoimpl");
+		log.debug("starting save method in daoimpl");
 		try {
 			sessionFactory.openSession().save(user);
 			return true;
@@ -80,8 +81,8 @@ public class UserDaoImpl implements UserDao {
 
 	@Transactional
 	public boolean updateUser(User user) {
-		System.out.println("starting update method in daoimpl");
-		System.out.println("ISONLINE VALUE IS [BEFORE UPDATE]" + user.getIsOnline());
+		log.debug("starting update method in daoimpl");
+		log.debug("ISONLINE VALUE IS [BEFORE UPDATE]" + user.getIsOnline());
 		User existingUser;
 		try {
 			Session session = sessionFactory.openSession();
@@ -90,7 +91,7 @@ public class UserDaoImpl implements UserDao {
 			session.update(existingUser);
 			session.flush();
 			session.close();
-			System.out.println("ISONLINE VALUE IS [AFTER UPDATE] " + existingUser.getIsOnline());
+			log.debug("ISONLINE VALUE IS [AFTER UPDATE] " + existingUser.getIsOnline());
 			return true;
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
@@ -103,10 +104,10 @@ public class UserDaoImpl implements UserDao {
 	@Transactional
 	public User validate(User user) {
 
-		System.out.println("Starting vlidate method in daoImpl");
+		log.debug("Starting vlidate method in daoImpl");
 		String hql = "from User where emailId='" + user.getEmailId() + "' and password='" + user.getPassword() + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		System.out.println("Ending of the Update Method in DaoImpl");
+		log.debug("Ending of the Update Method in DaoImpl");
 		User validUser = (User) query.uniqueResult();
 		return validUser;
 		

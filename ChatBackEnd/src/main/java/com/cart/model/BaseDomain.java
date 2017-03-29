@@ -1,5 +1,6 @@
 package com.cart.model;
 
+import javax.persistence.Entity;
 import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;

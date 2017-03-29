@@ -2,7 +2,7 @@
 app.factory('jobService', function($http) {
 	console.log('entering jobService')
 
-	var BASE_URL = "http://localhost:8050/HavFunBackEnd"
+	var BASE_URL = "http://localhost:8060/HavFunBackEnd"
 
 	var jobService = this;
 

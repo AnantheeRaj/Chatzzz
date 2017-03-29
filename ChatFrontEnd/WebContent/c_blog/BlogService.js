@@ -1,6 +1,6 @@
 app.factory('blogService', function($http) {
 	console.log('starting blogService')
-	var BASE_URL = "http://localhost:8050/HavFunBackEnd"
+	var BASE_URL = "http://localhost:8060/HavFunBackEnd"
 
 	var blogService = this;
 	blogService.fetchAllBlogs = function() {

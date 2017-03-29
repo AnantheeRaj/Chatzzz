@@ -8,6 +8,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +18,8 @@ import com.cart.model.Job;
 
 @Repository
 public class JobDaoImpl implements JobDao {
+	
+	public static final Logger log = LoggerFactory.getLogger(JobDaoImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -24,7 +28,7 @@ public class JobDaoImpl implements JobDao {
 	public List<Job> getAllJobs() {
 		Session session = sessionFactory.openSession();
 		List<Job> jobs = session.createQuery("from Job").list();
-		System.out.println("----List of Jobs-----");
+		log.debug("----List of Jobs-----");
 		System.out.println(jobs);
 		session.flush();
 		session.close();
@@ -35,7 +39,7 @@ public class JobDaoImpl implements JobDao {
 	public Job getJobById(String jobId) {
 		Session session = sessionFactory.openSession();
 		Job job = (Job) session.get(Job.class, jobId);
-		System.out.println("----getJobById : " + job);
+		log.debug("----getJobById : " + job);
 		session.close();
 		return job;
 	}
@@ -45,7 +49,7 @@ public class JobDaoImpl implements JobDao {
 		Session session = sessionFactory.openSession();
 		try {
 			session.save(job);
-			System.out.println("-----Saving Job---" + job);
+			log.debug("-----Saving Job---" + job);
 			session.close();
 			return true;
 		} catch (HibernateException e) {
@@ -57,7 +61,7 @@ public class JobDaoImpl implements JobDao {
 
 	@Transactional
 	public Job updateJob(String jobId, Job job) {
-		System.out.println("-----Starting update job in daoimpl");
+		log.debug("-----Starting update job in daoimpl");
 		Session session = sessionFactory.openSession();
 
 		Job currentJob = (Job) session.get(Job.class, jobId);
@@ -67,7 +71,7 @@ public class JobDaoImpl implements JobDao {
 		Job updatedJob = (Job) session.get(Job.class, jobId);
 		session.flush();
 		session.close();
-		System.out.println("Ending Update method in DaoImpl");
+		log.debug("Ending Update method in DaoImpl");
 		return updatedJob;
 	}
 	
@@ -79,7 +83,7 @@ public class JobDaoImpl implements JobDao {
 			Job job = (Job) session.get(Job.class, jobId);
 			session.delete(job);
 			// Transient - job
-			System.out.println("-----Removing------" + job);
+			log.debug("-----Removing------" + job);
 			session.flush();
 			session.close();
 			return true;

@@ -8,6 +8,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +17,8 @@ import com.cart.model.Blog;
 
 @Repository
 public class BlogDaoImpl implements BlogDao {
+	
+	public static final Logger log = LoggerFactory.getLogger(BlogDaoImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -31,14 +35,14 @@ public class BlogDaoImpl implements BlogDao {
 	public List<Blog> getAllblogs() {
 		Session session = sessionFactory.openSession();
 		List<Blog> blogs = session.createQuery("from Blog").list();
-		System.out.println("Ending Blogs method in DaoImpl");
+		log.debug("Ending Blogs method in DaoImpl");
 		return blogs;
 	}
 
 	@Transactional
 	public boolean saveBlog(Blog blog) {
 		Session session = sessionFactory.openSession();
-		System.out.println("Starting save Blog method in DaoImpl");
+		log.debug("Starting save Blog method in DaoImpl");
 		try {
 			session.save(blog);
 			session.close();
@@ -53,7 +57,7 @@ public class BlogDaoImpl implements BlogDao {
 	@Transactional
 	public boolean updateStatus(Blog blog) {
 		Session session = sessionFactory.openSession();
-		System.out.println("Starting update method in DaoImpl");
+		log.debug("Starting update method in DaoImpl");
 		try {
 			session.update(blog);
 			session.flush();
@@ -100,11 +104,11 @@ public class BlogDaoImpl implements BlogDao {
 
 	public void increaseLikes(String blogId) {
 		Session session = sessionFactory.openSession();
-		System.out.println("---starting likes ");
+		log.debug("---starting likes ");
 		Blog blog = getBlogById(blogId);
-		System.out.println("Before Like: "+ blog.getLikes());
+		log.debug("Before Like: "+ blog.getLikes());
 		blog.setLikes(blog.getLikes() + 1);
-		System.out.println("After Like: "+ blog.getLikes());
+		log.debug("After Like: "+ blog.getLikes());
 		session.update(blog);
 		session.flush();
 		session.close();
@@ -112,11 +116,11 @@ public class BlogDaoImpl implements BlogDao {
 
 	public void increaseDislikes(String blogId) {
 		Session session = sessionFactory.openSession();
-		System.out.println("---starting likes ");
+		log.debug("---starting likes ");
 		Blog blog = getBlogById(blogId);
-		System.out.println("Before Dislike: "+ blog.getDislikes());
+		log.debug("Before Dislike: "+ blog.getDislikes());
 		blog.setDislikes(blog.getDislikes() + 1);
-		System.out.println("After Dislike: "+ blog.getDislikes());
+		log.debug("After Dislike: "+ blog.getDislikes());
 		session.update(blog);
 		session.flush();
 		session.close();

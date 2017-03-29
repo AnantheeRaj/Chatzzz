@@ -9,6 +9,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +18,8 @@ import com.cart.model.Friend;
 
 @Repository
 public class FriendDaoImpl implements FriendDao {
+	
+	public static final Logger log = LoggerFactory.getLogger(FriendDaoImpl.class);
 
 	@Autowired(required = true)
 	private SessionFactory sessionFactory;
@@ -34,7 +38,7 @@ public class FriendDaoImpl implements FriendDao {
 
 	// creating Auto generation in Own Way
 	private Integer getMaxId() {
-		System.out.println("-----starting method getMaxId");
+		log.debug("-----starting method getMaxId");
 		String hql = "select max(id) from Friend";
 		Query query = sessionFactory.openSession().createQuery(hql);
 		Integer maxId;
@@ -45,7 +49,7 @@ public class FriendDaoImpl implements FriendDao {
 			e.printStackTrace();
 			return 100;
 		}
-		System.out.println("-----MaxId : " + maxId);
+		log.debug("-----MaxId : " + maxId);
 		return maxId;
 	}
 
@@ -60,7 +64,7 @@ public class FriendDaoImpl implements FriendDao {
 	@Transactional
 	public Friend getBId(String userId, String friendId) {
 		String hql = "from Friend where userID='" + userId + "' and friendId= '" + friendId + "'";
-		System.out.println("hql :" + hql);
+		log.debug("hql :" + hql);
 		Query query = sessionFactory.openSession().createQuery(hql);
 		return (Friend) query.uniqueResult();
 
@@ -80,16 +84,16 @@ public class FriendDaoImpl implements FriendDao {
 
 	@Transactional
 	public boolean updateFriend(Friend friend) {
-		System.out.println("FriendIId : " + friend.getFriendId() + " USer ID: " + friend.getUserID() + "Status: "
+		log.debug("FriendIId : " + friend.getFriendId() + " USer ID: " + friend.getUserID() + "Status: "
 				+ friend.getStatus() + "Id: " + friend.getId());
-		System.out.println("starting update method in daoimpl ");
-		System.out.println("ISONLINE VALUE IS [BEFORE UPDATE]" + friend.getStatus());
+		log.debug("starting update method in daoimpl ");
+		log.debug("ISONLINE VALUE IS [BEFORE UPDATE]" + friend.getStatus());
 		try {
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			session.update(friend);
 			tx.commit();
-			System.out.println("ISONLINE VALUE IS [AFTER UPDATE] " + friend.getStatus());
+			log.debug("ISONLINE VALUE IS [AFTER UPDATE] " + friend.getStatus());
 			return true;
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -115,23 +119,23 @@ public class FriendDaoImpl implements FriendDao {
 
 	@Transactional
 	public void setOnline(String userId) {
-		System.out.println("-----staring setnline method in frienddao");
+		log.debug("-----staring setnline method in frienddao");
 		String hql = "UPDATE Friend SET isOnline = 'Y' where userId='" + userId + "'";
-		System.out.println("-----hql : " + hql);
+		log.debug("-----hql : " + hql);
 		Query query = sessionFactory.openSession().createQuery(hql);
 		query.executeUpdate();
-		System.out.println("-----Ending the method setOnline");
+		log.debug("-----Ending the method setOnline");
 
 	}
 
 	@Transactional
 	public void setOffLine(String userId) {
-		System.out.println("-----starting the mehod setOffline");
+		log.debug("-----starting the mehod setOffline");
 		String hql = "UPDATE Friend SET isOnline = 'N' where userId='" + userId + "'";
-		System.out.println("-----hql : " + hql);
+		log.debug("-----hql : " + hql);
 		Query query = sessionFactory.openSession().createQuery(hql);
 		query.executeUpdate();
-		System.out.println("-----Ending the method setOnline");
+		log.debug("-----Ending the method setOnline");
 
 	}
 
