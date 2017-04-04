@@ -5,7 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
+//import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -18,7 +18,7 @@ import com.cart.model.Blog;
 @Repository
 public class BlogDaoImpl implements BlogDao {
 	
-	public static final Logger log = LoggerFactory.getLogger(BlogDaoImpl.class);
+	Logger log = LoggerFactory.getLogger(BlogDaoImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -33,9 +33,10 @@ public class BlogDaoImpl implements BlogDao {
 
 	@Transactional
 	public List<Blog> getAllblogs() {
+		log.debug("===>Ending Blogs method in DaoImpl===>");
 		Session session = sessionFactory.openSession();
 		List<Blog> blogs = session.createQuery("from Blog").list();
-		log.debug("Ending Blogs method in DaoImpl");
+		
 		return blogs;
 	}
 
@@ -48,7 +49,6 @@ public class BlogDaoImpl implements BlogDao {
 			session.close();
 			return true;
 		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -64,7 +64,6 @@ public class BlogDaoImpl implements BlogDao {
 			session.close();
 			return true;
 		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -74,6 +73,7 @@ public class BlogDaoImpl implements BlogDao {
 	@Transactional
 	public void deleteBlog(String blogId) {
 		Session session = sessionFactory.openSession();
+		log.debug("Starting delete method in DaoImpl");
 		Blog blog = (Blog) session.get(Blog.class, blogId);
 		session.delete(blog);
 		session.flush();
@@ -83,14 +83,15 @@ public class BlogDaoImpl implements BlogDao {
 	@Transactional
 	public Blog getBlogById(String blogId) {
 		Session session = sessionFactory.openSession();
+		log.debug("Starting get blog id method in DaoImpl");
 		Blog blog = (Blog) session.get(Blog.class, blogId);
 		session.close();
 		return blog;
 	}
 
 	public Blog updateBlog(String blogId, Blog blog) {
-		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
+		log.debug("Starting update blog method in DaoImpl");
 		Blog currentBlog = (Blog) session.get(Blog.class, blogId);
 		if (currentBlog == null) {
 			return null;

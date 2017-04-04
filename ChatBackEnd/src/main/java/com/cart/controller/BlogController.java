@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import com.cart.service.BlogService;
 
 @Controller
 public class BlogController {
+	
+	Logger log = LoggerFactory.getLogger(BlogController.class);
 
 	@Autowired
 	private BlogService blogService;
@@ -30,6 +34,7 @@ public class BlogController {
 
 		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 		List<Blog> blogs = blogService.getAllblogs();
+		log.debug("get users");
 		if (loggedInUserId == null) {
 			Blog blog = new Blog();
 			blog.setErrorCode("401");
@@ -57,7 +62,7 @@ public class BlogController {
 			blog.setDislikes(0);
 			Date date = new Date();
 			blog.setBlogCreatedDate(date.toString());
-			System.out.println("----saving create blog");
+			log.debug("----saving create blog");
 			if (blogService.saveBlog(blog)) {
 				blog.setErrorCode("200");
 				blog.setErrorMessage("Your Blog has been saved Successfully");
@@ -65,7 +70,7 @@ public class BlogController {
 				blog.setErrorCode("405");
 				blog.setErrorMessage("Unable to process your request");
 			}
-			System.out.println("----Ending of the method saveBlog");
+			log.debug("----Ending of the method saveBlog");
 			return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 		} else {
 			blog = new Blog();
@@ -84,7 +89,7 @@ public class BlogController {
 
 	@RequestMapping(value = "/blog/updateBlog/{blogId}", method = RequestMethod.PUT)
 	public ResponseEntity<Blog> updateBlog(@PathVariable("blogId") String blogId, @RequestBody Blog blog) {
-		System.out.println("---Starting Update method in BlogController");
+		log.debug("---Starting Update method in BlogController");
 		Blog updatedBlog = blogService.updateBlog(blogId, blog);
 		if (blog == null) {
 			return new ResponseEntity<Blog>(HttpStatus.NOT_FOUND);
@@ -104,21 +109,21 @@ public class BlogController {
 
 	@RequestMapping(value = "/blog/upvote/{blogId}", method = RequestMethod.GET)
 	public ResponseEntity<Blog> upvote(@PathVariable("blogId") String blogId) {
-		System.out.println("Starting upvote method in controller");
+		log.debug("Starting upvote method in controller");
 		blogService.increaseLikes(blogId);
 		return new ResponseEntity<Blog>(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/blog/downvote/{blogId}", method = RequestMethod.GET)
 	public ResponseEntity<Blog> downvote(@PathVariable("blogId") String blogId) {
-		System.out.println("Starting upvote method in controller");
+		log.debug("Starting upvote method in controller");
 		blogService.increaseDislikes(blogId);
 		return new ResponseEntity<Blog>(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/blog/accept/{blogId}/", method = RequestMethod.GET)
 	public ResponseEntity<Blog> acceptBlog(@PathVariable("blogId") String blogId) {
-		System.out.println("---Starting acceptBlog method");
+		log.debug("---Starting acceptBlog method");
 		blog = UpdateStatus(blogId, "Accepted", "");
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 	}
@@ -126,15 +131,15 @@ public class BlogController {
 	@RequestMapping(value = "/blog/reject/{blogId}/{reason}", method = RequestMethod.GET)
 	public ResponseEntity<Blog> rejectBlog(@PathVariable("blogId") String blogId,
 			@PathVariable("reason") String reason) {
-		System.out.println("---Starting RejectBlog method");
+		log.debug("---Starting RejectBlog method");
 		blog = UpdateStatus(blogId, "Rejected", reason);
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 	}
 
 	// method for accept and reject
 	private Blog UpdateStatus(String blogId, String status, String reason) {
-		System.out.println("---starting update method in blog");
-		System.out.println("Status : " + status);
+		log.debug("---starting update method in blog");
+		log.debug("Status : " + status);
 		blog = blogService.getBlogById(blogId);
 		if (blog == null) {
 			blog = new Blog();
@@ -145,7 +150,7 @@ public class BlogController {
 			blog.setReason(reason);
 			blogService.updateStatus(blog);
 		}
-		System.out.println("---Ending update status");
+		log.debug("---Ending update status");
 		return blog;
 	}
 

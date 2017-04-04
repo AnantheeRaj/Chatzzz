@@ -2,6 +2,8 @@ package com.cart.controller;
 
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -12,13 +14,15 @@ import com.cart.model.OutputMessage;
 
 @Controller
 public class ChatController {
+	
+	Logger log = LoggerFactory.getLogger(ChatController.class);
 
 	@MessageMapping("/chat")
 	@SendTo("/topic/message")
 	public OutputMessage sendMessage(Message message) {
-		System.out.println("calling the method sendMessage");
-		System.out.println("Message : " + message.getMessage());
-		System.out.println("MessageId : " + message.getId());
+		log.debug("calling the method sendMessage");
+		log.debug("Message : " + message.getMessage());
+		log.debug("MessageId : " + message.getId());
 		
 		return new OutputMessage(message, new Date());
 	}

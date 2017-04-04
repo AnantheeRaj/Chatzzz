@@ -18,7 +18,7 @@ import com.cart.model.User;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-	public static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
+	Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
 
 	@Autowired
 	private User user;
@@ -36,11 +36,10 @@ public class UserDaoImpl implements UserDao {
 
 	@Transactional
 	public List<User> getAllUser() {
-		System.out.println("Starting getAllUsers DaoImpl");
+		log.debug("Starting getAllUsers DaoImpl");
 		String hql = "from User";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		log.debug("Ending UserDao getAllUser");
-		//System.out.println("Ending UserDao getAllUser");
 		return query.list();
 	}
 

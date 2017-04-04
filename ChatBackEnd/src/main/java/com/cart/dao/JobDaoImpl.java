@@ -19,7 +19,7 @@ import com.cart.model.Job;
 @Repository
 public class JobDaoImpl implements JobDao {
 	
-	public static final Logger log = LoggerFactory.getLogger(JobDaoImpl.class);
+	Logger log = LoggerFactory.getLogger(JobDaoImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -29,7 +29,7 @@ public class JobDaoImpl implements JobDao {
 		Session session = sessionFactory.openSession();
 		List<Job> jobs = session.createQuery("from Job").list();
 		log.debug("----List of Jobs-----");
-		System.out.println(jobs);
+		log.debug("No of jobs : "+jobs);
 		session.flush();
 		session.close();
 		return jobs;

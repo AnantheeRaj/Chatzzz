@@ -19,7 +19,7 @@ import com.cart.model.Friend;
 @Repository
 public class FriendDaoImpl implements FriendDao {
 	
-	public static final Logger log = LoggerFactory.getLogger(FriendDaoImpl.class);
+	Logger log = LoggerFactory.getLogger(FriendDaoImpl.class);
 
 	@Autowired(required = true)
 	private SessionFactory sessionFactory;
@@ -45,7 +45,6 @@ public class FriendDaoImpl implements FriendDao {
 		try {
 			maxId = (Integer) query.uniqueResult();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 100;
 		}
@@ -55,6 +54,7 @@ public class FriendDaoImpl implements FriendDao {
 
 	@Transactional
 	public List<Friend> getMyFriend(String userId) {
+		log.debug("-----starting method list friend");
 		String hql = "from Friend where userID='" + userId + "' and status ='A'";
 		Query query = sessionFactory.openSession().createQuery(hql);
 		List<Friend> list = (List<Friend>) query.list();
@@ -73,10 +73,10 @@ public class FriendDaoImpl implements FriendDao {
 	@Transactional
 	public boolean saveFriend(Friend friend) {
 		try {
+			log.debug("-----starting method save friend");
 			sessionFactory.getCurrentSession().save(friend);
 			return true;
 		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -104,6 +104,7 @@ public class FriendDaoImpl implements FriendDao {
 	@Transactional
 	public void deleteFriend(String userId, String friendId) {
 		Friend friend = new Friend();
+		log.debug("-----starting method delete");
 		friend.setFriendId(friendId);
 		friend.setUserID(userId);
 		sessionFactory.openSession().delete(friend);

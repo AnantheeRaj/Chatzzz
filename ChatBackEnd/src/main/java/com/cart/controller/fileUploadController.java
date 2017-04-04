@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,8 @@ import com.cart.service.UserService;
 @RestController
 public class fileUploadController {
 
+	Logger log = LoggerFactory.getLogger(fileUploadController.class);
+	
 	@Autowired
 	private UploadFileDao uploadFileDao;
 
@@ -36,15 +40,15 @@ public class fileUploadController {
 	public ResponseEntity<?> handleFileUpload(HttpServletRequest request, HttpSession session,
 			@RequestParam CommonsMultipartFile fileUpload) throws Exception {
 		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
-		System.out.println("getting friends of: " + loggedInUserId);
+		log.debug("getting friends of: " + loggedInUserId);
 		User user = userService.getByemailId(loggedInUserId);
-		System.out.println("User emailId: " + user.getEmailId());
+		log.debug("User emailId: " + user.getEmailId());
 		if (user == null)
 			throw new RuntimeException("Not logged in");
-		System.out.println("User is " + user.getfName() + " " + user.getlName());
+		log.debug("User is " + user.getfName() + " " + user.getlName());
 		if (fileUpload != null) {
 			CommonsMultipartFile file = fileUpload;
-			System.out.println("Saving File: " + file.getOriginalFilename());
+			log.debug("Saving File: " + file.getOriginalFilename());
 			UploadFile uploadFile = new UploadFile();
 			uploadFile.setFileName(file.getOriginalFilename());
 			uploadFile.setUserName(user.getEmailId());
@@ -54,14 +58,14 @@ public class fileUploadController {
 
 			UploadFile getUploadFile = uploadFileDao.getFile(user.getEmailId());
 			String name = getUploadFile.getFileName();
-			System.out.println("FileName: " + name);
-			System.out.println("File: " + getUploadFile.getData());
+			log.debug("FileName: " + name);
+			log.debug("File: " + getUploadFile.getData());
 			byte[] imagefiles = getUploadFile.getData(); // image
 
 			try {
 				String path = "C:/Users/ikism/workspace/CollaborationBackEnd/src/main/webapp/WEB-INF/resources/images/"
 						+ user.getEmailId();
-				System.out.println("Path: " + path);
+				log.debug("Path: " + path);
 				File files = new File(path);
 				FileOutputStream fos = new FileOutputStream(files);
 				fos.write(imagefiles);
@@ -81,8 +85,8 @@ public class fileUploadController {
 		User user = (User) session.getAttribute("loggedInUserId");
 		UploadFile uploadFile = uploadFileDao.getFile(user.getEmailId());
 		String name = uploadFile.getFileName();
-		System.out.println("Name: " + name);
-		System.out.println("File: " + uploadFile.getData());
+		log.debug("Name: " + name);
+		log.debug("File: " + uploadFile.getData());
 		byte[] imagefiles = uploadFile.getData();
 		return new ResponseEntity<byte[]>(imagefiles, HttpStatus.OK);
 	}

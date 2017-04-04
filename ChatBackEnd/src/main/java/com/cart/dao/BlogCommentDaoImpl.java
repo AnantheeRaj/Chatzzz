@@ -19,8 +19,8 @@ import com.cart.model.User;
 
 @Repository
 public class BlogCommentDaoImpl implements BlogCommentDao {
-
-	public static final Logger log = LoggerFactory.getLogger(BlogCommentDaoImpl.class);
+	
+	Logger log = LoggerFactory.getLogger(BlogCommentDaoImpl.class);
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -36,6 +36,7 @@ public class BlogCommentDaoImpl implements BlogCommentDao {
 	@Transactional
 	public List<BlogComment> commentList() {
 		Session session = sessionFactory.openSession();
+		log.debug("Starting of the blog list method in DaoImpl");
 		Query query = session.createQuery("from BlogComment");
 		List<BlogComment> comments = query.list();
 		session.close();
@@ -46,6 +47,7 @@ public class BlogCommentDaoImpl implements BlogCommentDao {
 	public List<BlogComment> getCommentById(String blogId) {
 
 		Session session = sessionFactory.openSession();
+		log.debug("Starting of the list comment method in DaoImpl");
 		String hql = "from BlogComment where blogId ='" + blogId + "'";
 		Query query = session.createQuery(hql);
 		List<BlogComment> comments = query.list();
@@ -69,6 +71,7 @@ public class BlogCommentDaoImpl implements BlogCommentDao {
 	@Transactional
 	public void saveComment(BlogComment blogComment) {
 		Session session = sessionFactory.openSession();
+		log.debug("Starting of the blog comment method in DaoImpl");
 		session.save(blogComment);
 		session.flush();
 		session.close();
@@ -79,6 +82,7 @@ public class BlogCommentDaoImpl implements BlogCommentDao {
 	public BlogComment updateComment(String commentId, BlogComment blogComment) {
 
 		Session session = sessionFactory.openSession();
+		log.debug("Starting of the update blog method in DaoImpl");
 		if (session.get(BlogComment.class, commentId) == null)
 			return null;
 		session.merge(blogComment);
@@ -90,8 +94,8 @@ public class BlogCommentDaoImpl implements BlogCommentDao {
 
 	@Transactional
 	public void deleteComment(String CommentId) {
-		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
+		log.debug("Starting of the delete comment method in DaoImpl");
 		BlogComment comment = (BlogComment) session.get(BlogComment.class, CommentId);
 		session.delete(comment);
 		session.flush();

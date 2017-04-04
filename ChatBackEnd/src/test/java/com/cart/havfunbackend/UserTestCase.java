@@ -8,6 +8,8 @@ import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.cart.dao.UserDao;
 import com.cart.model.User;
 import com.cart.service.UserService;
 
@@ -19,7 +21,7 @@ public class UserTestCase {
 		static User user;
 
 	@Autowired
-		static UserService userservice;
+		static UserDao userdao;
 
 	@BeforeClass
 	@Autowired
@@ -29,7 +31,7 @@ public class UserTestCase {
 			context=new  AnnotationConfigApplicationContext();
 			context.scan("com.cart");
 			context.refresh();
-			userservice=(UserService) context.getBean("userservice");
+			userdao=(UserDao) context.getBean("userdao");
 	 		//user=(User) context.getBean("user");
 	 		System.out.println("objects are created");
 		}
@@ -50,7 +52,7 @@ public class UserTestCase {
 				u.setStatus('N');
 				u.setRole("STUDENT");
 				u.setReason("sample");
-				assertTrue(userservice.saveUser(u));
+				assertTrue(userdao.saveUser(u));
 				//Boolean status=userservice.saveUser(user);
 				//Assert.assertEquals("save user test case",true,status);
 			}
@@ -60,7 +62,7 @@ public class UserTestCase {
 	public void updateUserTestCase()
 	{
 		user.setUserId("123");
-		Boolean status=userservice.updateUser(user);
+		Boolean status=userdao.updateUser(user);
 		Assert.assertEquals("update user test case",true,status);
 	}
 		

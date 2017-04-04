@@ -2,6 +2,8 @@ package com.cart.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ import com.cart.service.JobService;
 @RestController
 public class jobApplicationController {
 
+	Logger log = LoggerFactory.getLogger(jobApplicationController.class);
+	
 	@Autowired
 	private JobAppService jobAppService;
 
@@ -32,10 +36,10 @@ public class jobApplicationController {
 
 	@RequestMapping(value = "/job/applyJob/{jobId}", method = RequestMethod.GET)
 	public ResponseEntity<?> applyJob(@PathVariable("jobId") String jobId, HttpSession session) {
-		System.out.println("---Applying for Job---");
+		log.debug("---Applying for Job---");
 		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 		job = jobService.getJobById(jobId);
-		System.out.println("Job: " + job.getTitle());
+		log.debug("Job: " + job.getTitle());
 		jobApp.setJob(job);
 		jobApp.setAppliedBy(loggedInUserId);
 		jobApp.setStatus("N");

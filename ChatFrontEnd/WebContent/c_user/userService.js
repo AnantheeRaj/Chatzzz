@@ -1,7 +1,7 @@
 app.factory('userService', function($http) {
 	console.log('-----starting userService.js')
 
-	var BASE_URL = "http://localhost:8060/HavFunBackEnd"
+	var BASE_URL = "http://localhost:8050/HavFunBackEnd"
 
 	var userService = this;
 

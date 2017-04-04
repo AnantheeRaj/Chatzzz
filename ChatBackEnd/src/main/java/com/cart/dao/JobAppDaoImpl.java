@@ -20,7 +20,7 @@ import com.cart.model.JobApplication;
 @Repository
 public class JobAppDaoImpl implements JobAppDao {
 	
-	public static final Logger log = LoggerFactory.getLogger(JobAppDaoImpl.class);
+	Logger log = LoggerFactory.getLogger(JobAppDaoImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -42,6 +42,7 @@ public class JobAppDaoImpl implements JobAppDao {
 
 	public List<JobApplication> getAppliedJobs(String userId) {
 		String hql = "from Friend where userId='" + userId + "' and status ='N'";
+		log.debug("List job " );
 		Query query = sessionFactory.openSession().createQuery(hql);
 		List<JobApplication> list = (List<JobApplication>) query.list();
 		return list;

@@ -37,7 +37,7 @@ public class DBConfig {
 		lsf.addProperties(hibernateProperties);
 		return lsf.addAnnotatedClass(User.class).addAnnotatedClass(BaseDomain.class).addAnnotatedClass(Blog.class)
 				.addAnnotatedClass(Job.class).addAnnotatedClass(Friend.class).addAnnotatedClass(BlogComment.class)
-				.addAnnotatedClass(JobApplication.class).buildSessionFactory();
+				.addAnnotatedClass(JobApplication.class).addAnnotatedClass(UploadFile.class).buildSessionFactory();
 
 	}
 
@@ -45,7 +45,7 @@ public class DBConfig {
 	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("org.h2.Driver");
-		dataSource.setUrl("jdbc:h2:tcp://localhost/~/anan");
+		dataSource.setUrl("jdbc:h2:tcp://localhost/~/gowma2");
 		dataSource.setUsername("sa");
 		dataSource.setPassword("");
 		return dataSource;

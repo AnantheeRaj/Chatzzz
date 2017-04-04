@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,8 @@ import com.cart.service.JobService;
 @RestController
 public class JobController {
 
+	Logger log = LoggerFactory.getLogger(JobController.class);
+	
 	@Autowired
 	private JobService jobService;
 	@Autowired
@@ -28,7 +32,7 @@ public class JobController {
 
 	@RequestMapping(value = "/job/getAllJobs", method = RequestMethod.GET)
 	public ResponseEntity<?> getAllJobs(HttpSession session) {
-		System.out.println("----Starting getAllJobs in JobController");
+		log.debug("----Starting getAllJobs in JobController");
 		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 		List<Job> jobs = jobService.getAllJobs();
 		if (loggedInUserId != null) {
@@ -46,7 +50,7 @@ public class JobController {
 
 	@RequestMapping(value = "/job/getJobById/{jobId}", method = RequestMethod.GET)
 	public ResponseEntity<Job> getJobById(@PathVariable("jobId") String jobId) {
-		System.out.println("----Starting getBId in JobController----");
+		log.debug("----Starting getBId in JobController----");
 		Job job = jobService.getJobById(jobId);
 		if (job == null) {
 			job = new Job();
@@ -57,7 +61,7 @@ public class JobController {
 
 	@RequestMapping(value = "/job/addJob/", method = RequestMethod.POST)
 	public ResponseEntity<?> saveJob(@RequestBody Job job, HttpSession session) {
-		System.out.println("---Saving Jobs---");
+		log.debug("---Saving Jobs---");
 		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 		if (loggedInUserId != null) {
 			Date date = new Date();
@@ -75,7 +79,7 @@ public class JobController {
 
 	@RequestMapping(value = "/job/deleteJob/{jobId}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteJob(@PathVariable("jobId") String jobId) {
-		System.out.println("----Starting delete in Jobcontroller");
+		log.debug("----Starting delete in Jobcontroller");
 		Job job = jobService.getJobById(jobId);
 		if (job == null)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
