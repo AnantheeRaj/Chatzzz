@@ -8,6 +8,10 @@ app.config(function($routeProvider) {
 		templateUrl : 'c_user/login.html',
 	}).when('/register', {
 		templateUrl : 'c_user/register.html'
+	}).when('/viewprofile', {
+		templateUrl : 'c_common/view_profile.html'
+	}).when('/home', {
+		templateUrl : 'c_common/home.html'
 	}).when('/login', {
 		templateUrl : 'c_user/login.html'
 	}).when('/listOfUsers', {
@@ -16,6 +20,9 @@ app.config(function($routeProvider) {
 	}).when('/listofBlog', {
 		templateUrl : 'c_blog/listofBlog.html',
 		controller : 'blogController'
+	}).when('/blogWithComment', {
+		templateUrl : 'c_comment/blogWithComment.html',
+		controller : 'commentController'
 	}).when('/addNew', {
 		templateUrl : 'c_blog/addNew.html',
 		controller : 'blogController'

@@ -4,7 +4,18 @@ app.factory('commentService',function($http){
 	var BASE_URL = "http://localhost:8050/HavFunBackEnd"
 		
 	var commentService = this;
-	commentService.fetchAllComments = function(blogId){
+	
+	commentService.fetchAllComments = function(){
+		console.log('entering getAllComments in service')
+		return $http.get(BASE_URL + "/getAllComments").then(function(response){
+			return response.data;
+		},function(response){
+			console.error('Error while getting comments')
+			return response.data;
+		});
+	};
+
+	/*commentService.fetchAllComments = function(blogId){
 		console.log('entering getAllComments in service')
 		return $http.get(BASE_URL + "/blogComment/" + blogId).then(function(response){
 			return response.data;
@@ -12,7 +23,7 @@ app.factory('commentService',function($http){
 			console.error('Error while getting comments')
 			return response.data;
 		});
-	};
+	};*/
 	
 	commentService.createComment = function(comment) {
 		console.log('entering createComment')

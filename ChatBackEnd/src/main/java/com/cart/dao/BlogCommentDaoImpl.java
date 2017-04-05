@@ -39,7 +39,7 @@ public class BlogCommentDaoImpl implements BlogCommentDao {
 		log.debug("Starting of the blog list method in DaoImpl");
 		Query query = session.createQuery("from BlogComment");
 		List<BlogComment> comments = query.list();
-		session.close();
+		//session.close();
 		return comments;
 	}
 

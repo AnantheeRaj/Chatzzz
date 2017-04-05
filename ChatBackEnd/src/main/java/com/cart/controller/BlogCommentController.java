@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,11 +56,11 @@ public class BlogCommentController {
 	// RequestBody - to convert JSON data to java object
 	// ResponseBody -> servet to client
 	// RequestBody -> client to server
-	public ResponseEntity<Void> createComment(@RequestBody BlogComment comment, UriComponentsBuilder build) {
+	public ResponseEntity<Void> createComment(@RequestBody BlogComment comment,HttpSession session, UriComponentsBuilder build) {
 		Date date = new Date();
-
+		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 		comment.setCommentedDate(date.toString());
-
+		comment.setUserId(loggedInUserId);
 		blogCommentService.saveComment(comment);
 		HttpHeaders headers = new HttpHeaders();
 		// http://localhost:8080/appname/Comment/210

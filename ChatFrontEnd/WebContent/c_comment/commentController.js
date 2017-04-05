@@ -13,20 +13,31 @@ app.controller('commentController',
 			};
 
 			$scope.comments;
-
-			$scope.fetchAllComments = function(blogId) {
-				console.log('entering getllComments')
-				commentService.fetchAllComments(blogId).then(function(data) {
+			
+			$scope.fetchAllComments = function() {
+				console.log('entering getAllCommentswithoutblogId')
+				commentService.fetchAllComments().then(function(data) {
 					$scope.comments = data;
 				}, function(error) {
 					console.error('Error while fetching')
 				})
 			};
 
+
+			/*$scope.fetchAllComments = function(blogId) {
+				console.log('entering getllComments')
+				commentService.fetchAllComments(blogId).then(function(data) {
+					$scope.comments = data;
+				}, function(error) {
+					console.error('Error while fetching')
+				})
+			};*/
+
 			$scope.createComment = function(comment) {
 				console.log('entering create comment')
 				commentService.createComment(comment).then(
-						console.log('saved'), function(error) {
+						$scope.fetchAllComments(),
+                   console.log('saved'), function(error) {
 							console.log('Error while creating comment')
 						})
 			};
