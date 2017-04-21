@@ -2,6 +2,7 @@ package com.cart.havfunbackend;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +16,7 @@ import com.cart.service.UserService;
 
 public class UserTestCase {
 	@Autowired
-		static AnnotationConfigApplicationContext context;
+		static AnnotationConfigWebApplicationContext context;
 
 	@Autowired
 		static User user;
@@ -28,7 +29,7 @@ public class UserTestCase {
 		public static void init()
 		{
 	
-			context=new  AnnotationConfigApplicationContext();
+			context=new  AnnotationConfigWebApplicationContext();
 			context.scan("com.cart");
 			context.refresh();
 			userdao=(UserDao) context.getBean("userdao");

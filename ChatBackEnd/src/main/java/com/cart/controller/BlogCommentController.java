@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -28,6 +29,10 @@ public class BlogCommentController {
 	
 	Logger log = LoggerFactory.getLogger(BlogCommentController.class);
 
+	//Just checking
+	//@Autowired
+	ServletContext ctx;
+	
 	@Autowired
 	private BlogCommentService blogCommentService;
 

@@ -6,12 +6,15 @@ import javax.sql.DataSource;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.cart.dao.UserDao;
+import com.cart.dao.UserDaoImpl;
 import com.cart.model.BaseDomain;
 import com.cart.model.Blog;
 import com.cart.model.BlogComment;
@@ -54,5 +57,12 @@ public class DBConfig {
 	@Bean
 	public HibernateTransactionManager hibTransManager() {
 		return new HibernateTransactionManager(sessionFactory());
+	}
+	
+	@Bean("userDao")
+	@Autowired
+	public UserDao getUserDAO()
+	{
+	     return new UserDaoImpl();
 	}
 }

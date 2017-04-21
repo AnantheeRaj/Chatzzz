@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+	
 	@Override
 	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
 		System.out.println("customizeRegistration");
