@@ -1,0 +1,121 @@
+May 01, 2017 4:26:51 PM org.springframework.context.annotation.AnnotationConfigApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@277c0f21: startup date [Mon May 01 16:26:51 IST 2017]; root of context hierarchy
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/C:/Users/NIIT%20LAP/.m2/repository/org/slf4j/slf4j-simple/1.7.7/slf4j-simple-1.7.7.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/C:/Users/NIIT%20LAP/.m2/repository/ch/qos/logback/logback-classic/1.1.3/logback-classic-1.1.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
+[main] INFO org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+[main] INFO org.hibernate.Version - HHH000412: Hibernate Core {4.3.6.Final}
+[main] INFO org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+[main] INFO org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+[main] INFO org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+[main] INFO org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+[main] INFO org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+[main] INFO org.hibernate.tool.hbm2ddl.SchemaUpdate - HHH000228: Running hbm2ddl schema update
+[main] INFO org.hibernate.tool.hbm2ddl.SchemaUpdate - HHH000102: Fetching database metadata
+[main] INFO org.hibernate.tool.hbm2ddl.SchemaUpdate - HHH000396: Updating schema
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000261: Table found: ANAN.PUBLIC.BLOGCOMMENT
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000037: Columns: [commenteddate, commentid, comment, blogid, userid]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000108: Foreign keys: []
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000126: Indexes: [primary_key_d]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000261: Table found: ANAN.PUBLIC.FRIEND
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000037: Columns: [friendid, id, userid, isonline, status]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000108: Foreign keys: []
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000126: Indexes: [primary_key_7]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000261: Table found: ANAN.PUBLIC.JOB
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000037: Columns: [jobid, qualification, postdate, description, company, salary, title]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000108: Foreign keys: []
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000126: Indexes: [primary_key_1]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000261: Table found: ANAN.PUBLIC.JOBAPPLICATION
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000037: Columns: [jobid, jobappid, appliedby, status]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000108: Foreign keys: [fk_hgx5bo7v6w746xw07pxki3mgq]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000126: Indexes: [primary_key_b, fk_hgx5bo7v6w746xw07pxki3mgq_index_b]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000261: Table found: ANAN.PUBLIC.UPLOADFILE
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000037: Columns: [file_name, file_id, file_data, username]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000108: Foreign keys: []
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000126: Indexes: [primary_key_e]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000261: Table found: ANAN.PUBLIC.USER
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000037: Columns: [fname, reason, lname, password, address, role, emailid, userid, phoneno, isonline, status]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000108: Foreign keys: []
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000126: Indexes: [primary_key_2, uk_kdy7231aflvkulvq0ds8o2lu1_index_2]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000261: Table found: ANAN.PUBLIC.BLOG
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000037: Columns: [reason, blogcreateddate, description, dislikes, title, blogid, userid, likes, status]
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000108: Foreign keys: []
+[main] INFO org.hibernate.tool.hbm2ddl.TableMetadata - HHH000126: Indexes: [primary_key_1f]
+[main] INFO org.hibernate.tool.hbm2ddl.SchemaUpdate - HHH000232: Schema update complete
+May 01, 2017 4:26:54 PM org.springframework.orm.hibernate4.HibernateTransactionManager afterPropertiesSet
+INFO: Using DataSource [org.apache.tomcat.dbcp.dbcp2.BasicDataSource@7bd7d6d6] of Hibernate SessionFactory for HibernateTransactionManager
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/comment/{commentId}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.cart.controller.BlogCommentController.deleteComment(java.lang.String)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/comment/{commentId}],methods=[PUT]}" onto public org.springframework.http.ResponseEntity<com.cart.model.BlogComment> com.cart.controller.BlogCommentController.updateComment(java.lang.String,com.cart.model.BlogComment)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/blogComment/{blogId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.cart.model.BlogComment>> com.cart.controller.BlogCommentController.getCommentById(java.lang.String)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/comment],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.cart.controller.BlogCommentController.createComment(com.cart.model.BlogComment,javax.servlet.http.HttpSession,org.springframework.web.util.UriComponentsBuilder)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/getAllComments],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.cart.model.BlogComment>> com.cart.controller.BlogCommentController.getAllComments()
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/blog/updateBlog/{blogId}],methods=[PUT]}" onto public org.springframework.http.ResponseEntity<com.cart.model.Blog> com.cart.controller.BlogController.updateBlog(java.lang.String,com.cart.model.Blog)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/blog/{blogId}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.cart.controller.BlogController.deleteBlog(java.lang.String)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/blog/getBlog/{blogId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.Blog> com.cart.controller.BlogController.getBlogById(java.lang.String)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/blog/create/],methods=[POST]}" onto public org.springframework.http.ResponseEntity<?> com.cart.controller.BlogController.createBlog(com.cart.model.Blog,javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/blog/getAllblogs],methods=[GET]}" onto public org.springframework.http.ResponseEntity<?> com.cart.controller.BlogController.getAllBlogs(javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/blog/downvote/{blogId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.Blog> com.cart.controller.BlogController.downvote(java.lang.String)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/blog/upvote/{blogId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.Blog> com.cart.controller.BlogController.upvote(java.lang.String)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/blog/reject/{blogId}/{reason}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.Blog> com.cart.controller.BlogController.rejectBlog(java.lang.String,java.lang.String)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/blog/accept/{blogId}/],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.Blog> com.cart.controller.BlogController.acceptBlog(java.lang.String)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/getFile],methods=[GET]}" onto public org.springframework.http.ResponseEntity<?> com.cart.controller.fileUploadController.getFile(javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/doUpload],methods=[POST]}" onto public org.springframework.http.ResponseEntity<?> com.cart.controller.fileUploadController.handleFileUpload(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpSession,org.springframework.web.multipart.commons.CommonsMultipartFile) throws java.lang.Exception
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/getMyFriendRequests/],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.cart.model.Friend>> com.cart.controller.FriendController.getMyFriendRequestList(javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/sendFriendRequest/{friendId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.Friend> com.cart.controller.FriendController.sendFriendRequest(java.lang.String,javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/myfriends],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.cart.model.Friend>> com.cart.controller.FriendController.getMyFriends(javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/acceptfriend/{friendId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.Friend> com.cart.controller.FriendController.acceptFriend(java.lang.String,javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/rejectfriend/{friendId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.Friend> com.cart.controller.FriendController.rejectFriend(java.lang.String,javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/unfriend/{friendId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.Friend> com.cart.controller.FriendController.unFriend(java.lang.String,javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/job/applyJob/{jobId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<?> com.cart.controller.jobApplicationController.applyJob(java.lang.String,javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/job/updateJob/{jobId}],methods=[PUT]}" onto public org.springframework.http.ResponseEntity<com.cart.model.Job> com.cart.controller.JobController.updateJob(java.lang.String,com.cart.model.Job)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/job/addJob/],methods=[POST]}" onto public org.springframework.http.ResponseEntity<?> com.cart.controller.JobController.saveJob(com.cart.model.Job,javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/job/getJobById/{jobId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.Job> com.cart.controller.JobController.getJobById(java.lang.String)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/job/getAllJobs],methods=[GET]}" onto public org.springframework.http.ResponseEntity<?> com.cart.controller.JobController.getAllJobs(javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/job/deleteJob/{jobId}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.cart.controller.JobController.deleteJob(java.lang.String)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/user/accept/{userId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.User> com.cart.controller.UserController.accept(java.lang.String)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/getAllUsers],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.cart.model.User>> com.cart.controller.UserController.getAllUsers()
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/user/{userId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.User> com.cart.controller.UserController.getUserById(java.lang.String)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/user/validate/],methods=[POST]}" onto public org.springframework.http.ResponseEntity<com.cart.model.User> com.cart.controller.UserController.login(com.cart.model.User,javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/user/register],methods=[POST]}" onto public org.springframework.http.ResponseEntity<com.cart.model.User> com.cart.controller.UserController.createUser(com.cart.model.User)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/user/logout/],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.User> com.cart.controller.UserController.logout(javax.servlet.http.HttpSession)
+May 01, 2017 4:26:54 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/user/accept/{userId}/{reason}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.cart.model.User> com.cart.controller.UserController.reject(java.lang.String,java.lang.String)
+May 01, 2017 4:26:54 PM org.springframework.context.annotation.AnnotationConfigApplicationContext refresh
+
+WARNING: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'resourceHandlerMapping' defined in class path resource [org/springframework/web/servlet/config/annotation/DelegatingWebMvcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.servlet.HandlerMapping]: Factory method 'resourceHandlerMapping' threw exception; nested exception is org.springframework.beans.factory.BeanInitializationException: Failed to init ResourceHttpRequestHandler; nested exception is java.lang.IllegalStateException: WebApplicationObjectSupport instance [ResourceHttpRequestHandler [locations=[class path resource [WEB-INF/resources/]], resolvers=[org.springframework.web.servlet.resource.PathResourceResolver@69ce2f62]]] does not run in a WebApplicationContext but in: org.springframework.context.annotation.AnnotationConfigApplicationContext@277c0f21: startup date [Mon May 01 16:26:51 IST 2017]; root of context hierarchy
